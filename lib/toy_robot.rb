@@ -25,9 +25,9 @@ class ToyRobot
   def turn direction
     return unless placed?
     direction = case
-      when direction.to_s.match(/^l(?:eft)$/i);  -1
-      when direction.to_s.match(/^r(?:ight)$/i); +1
-      else;                                      nil
+      when direction.to_s.match(/^l(?:eft)?$/i);  -1
+      when direction.to_s.match(/^r(?:ight)?$/i); +1
+      else;                                       nil
     end
     # The modulus is to make sure we stay within the 0-4 array boundary
     @f = (@f + direction) % DIRECTIONS.size if direction

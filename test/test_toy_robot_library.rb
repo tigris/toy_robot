@@ -28,6 +28,12 @@ class TestToyRobotLibrary < MiniTest::Unit::TestCase
     assert_equal '3,2,EAST', @robot.report
   end
 
+  def test_turn_with_string
+    @robot.place 2, 2, :south
+    @robot.turn 'l'
+    assert_equal '2,2,EAST', @robot.report
+  end
+
   def test_multiple_turns
     @robot.place 2, 2, :south
     @robot.turn :left
