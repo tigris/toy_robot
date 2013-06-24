@@ -8,12 +8,20 @@ $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 require 'toy_robot'
 
 def parse_command robot, command
-  args = case command.chomp
-    when 'LEFT';   [:turn, :left]
-    when 'RIGHT';  [:turn, :right]
-    when 'MOVE';   :move
-    when 'REPORT'; :report
-    when /PLACE (\d),(\d),(\w+)/; [:place, Regexp.last_match[1].to_i, Regexp.last_match[2].to_i, Regexp.last_match[3]]
+  command = command.chomp
+  args = case
+    when command == 'LEFT'
+      [:turn, :left]
+    when command == 'RIGHT'
+      [:turn, :right]
+    when command == 'MOVE'
+      :move
+    when command == 'REPORT'
+      :report
+    when matches = command.match(/PLACE (?<x>\d),(?<y>\d),(?<direction>\w+)/)
+      [:place, matches[:x].to_i, matches[:y].to_i, matches[:direction]]
+    else
+      raise ArgumentError.new("Invalid command: #{command}")
   end
   val = robot.send(*args)
   puts val if args == :report
