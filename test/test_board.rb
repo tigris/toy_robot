@@ -11,7 +11,8 @@ class TestBoard < MiniTest::Unit::TestCase
 
   def test_place_object
     board = Board.new 2, 2
-    assert board.place_object 0, 0
+    assert board.place_object(0, 0)
+    assert !board.place_object(2, 0)
   end
 
   def test_cant_place_where_object_exists
