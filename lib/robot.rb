@@ -85,6 +85,16 @@ class Robot
     @board.place_object *next_position
   end
 
+  # Print a map of the current robot on it's board, with objects marked as an
+  # X, empty spaces as a 0 and the robot marked as an R.
+  #
+  # @return [String]
+  def map
+    lines = @board.report.split("\n")
+    lines[lines.size - 1 - @y][@x] = 'R'
+    lines.join("\n")
+  end
+
 private
   def direction
     DIRECTIONS[@f]

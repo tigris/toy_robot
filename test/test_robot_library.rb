@@ -81,4 +81,10 @@ class TestRobotLibrary < MiniTest::Unit::TestCase
     @robot.move
     assert_equal '1,1,EAST', @robot.report
   end
+
+  def test_map
+    @robot.place 1, 1, :east
+    @robot.place_object
+    assert_equal "00000\n00000\n00000\n0RX00\n00000", @robot.map
+  end
 end
