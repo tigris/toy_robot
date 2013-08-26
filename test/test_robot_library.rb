@@ -68,4 +68,9 @@ class TestRobotLibrary < MiniTest::Unit::TestCase
     @robot.move
     assert_equal '4,0,EAST', @robot.report
   end
+
+  def test_next_position
+    @robot.place 0, 0, :east
+    assert_equal [1, 0], @robot.next_position
+  end
 end

@@ -42,10 +42,11 @@ class Robot
     report
   end
 
-  # Advances the robot 1 place in the direction it is facing.
+  # Based on current robot position/direction, what would be the coordinates
+  # for the next position if we were to move()
   #
-  # @return [String] Current status of robot.
-  def move
+  # @return [Array<Integer>] The x and y coordinates
+  def next_position
     return unless placed?
     axis = case direction
       when 'east', 'west';   :x
@@ -55,8 +56,17 @@ class Robot
       when 'north', 'east'; +1
       when 'south', 'west'; -1
     end
-    # We know place() will already ignore invalid placements
-    place(@x + (axis == :x ? amount : 0), @y + (axis == :y ? amount : 0), direction)
+    [@x + (axis == :x ? amount : 0), @y + (axis == :y ? amount : 0)]
+  end
+
+  # Advances the robot 1 place in the direction it is facing.
+  #
+  # @return [String] Current status of robot.
+  def move
+    return unless placed?
+    # We know place() will already ignore invalid placements, so just advance
+    # the robot and let it fail silently if those positions are not on the board
+    place(*next_position, direction)
   end
 
   # Reports the current location of the robot.
