@@ -23,4 +23,16 @@ class TestBoard < MiniTest::Unit::TestCase
     assert board.can_place?(0, 0)
     assert board.can_place?(1, 1)
   end
+
+  def test_report_no_objects
+    board = Board.new 2, 2
+    assert_equal "00\n00", board.report
+  end
+
+  def test_report_with_objects
+    board = Board.new 3, 3
+    board.place_object 0, 0
+    board.place_object 1, 1
+    assert_equal "000\n0X0\nX00", board.report
+  end
 end

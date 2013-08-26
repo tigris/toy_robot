@@ -16,7 +16,7 @@ class Board
   # @param [Integer] Y coordinate
   # @return [Boolean]
   def can_place? x, y
-    x >= 0 and x < @max_x and y >= 0 and y < @max_y and !@objects.any?{|o| o == [x, y] }
+    x >= 0 and x < @max_x and y >= 0 and y < @max_y and !object_at?(x, y)
   end
 
   # Place an object on the board at the given coordinates and remember the state
@@ -29,5 +29,26 @@ class Board
       @objects << [x, y]
       true
     end
+  end
+
+  # Print an ascii map of the current board, 0 for an empty space, X for an
+  # object in that space.
+  #
+  # @return [String]
+  def report
+    ret = ''
+    (0 .. @max_y - 1).to_a.reverse.each do |y|
+      (0 .. @max_x - 1).each do |x|
+        ret += object_at?(x, y) ? 'X' : '0'
+      end
+      ret += "\n"
+    end
+    ret.chomp
+  end
+
+  private
+
+  def object_at? x, y
+    @objects.any?{|o| o == [x, y] }
   end
 end
