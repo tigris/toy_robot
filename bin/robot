@@ -6,6 +6,7 @@ libdir = File.expand_path(File.join(File.dirname(file), '..', 'lib'))
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
 require 'robot'
+require 'board'
 
 def parse_command robot, command
   command = command.chomp
@@ -27,5 +28,5 @@ def parse_command robot, command
   puts val if args == :report
 end
 
-robot = Robot.new
+robot = Robot.new(Board.new 5, 5)
 File.readlines(ARGV[0]).each{|line| parse_command(robot, line) }

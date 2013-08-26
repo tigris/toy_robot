@@ -3,6 +3,14 @@ class Robot
   # going down/up the array index.
   DIRECTIONS = %w(north east south west).freeze
 
+  # Creates a new robot
+  #
+  # @param [Board] The board this robot will be placed on
+  # @return [Robot]
+  def initialize board
+    @board = board
+  end
+
   # Places the robot at the given X/Y location, facing in the given direction.
   #
   # @param [Integer] X coordinate for robot, [0-4]
@@ -10,7 +18,7 @@ class Robot
   # @param [String,Symbol] Direction robot is facing, `'north', `:east`, `'SOUTH'` or `:west`
   # @return [String] Current status of robot.
   def place x, y, f
-    if valid_position?(x, y) and valid_direction?(f)
+    if @board.can_place?(x, y) and valid_direction?(f)
       @x = x
       @y = y
       @f = DIRECTIONS.index(f.to_s.downcase)
@@ -66,10 +74,6 @@ private
 
   def placed?
     @x && @y && @f
-  end
-
-  def valid_position? x, y
-    x >= 0 and x <= 4 and y >= 0 and y <= 4
   end
 
   def valid_direction? f

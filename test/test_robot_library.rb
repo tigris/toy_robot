@@ -1,9 +1,11 @@
 require 'minitest/autorun'
+require 'board'
 require 'robot'
 
 class TestRobotLibrary < MiniTest::Unit::TestCase
   def setup
-    @robot = Robot.new
+    board  = Board.new 5, 5
+    @robot = Robot.new board
   end
 
   def test_move_before_placement_ignored
