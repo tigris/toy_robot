@@ -77,6 +77,14 @@ class Robot
     [ @x, @y, direction.upcase ].join(',')
   end
 
+  # Place an object directly in front of the robots current position on the
+  # board
+  #
+  # @return [Boolean]
+  def place_object
+    @board.place_object *next_position
+  end
+
 private
   def direction
     DIRECTIONS[@f]

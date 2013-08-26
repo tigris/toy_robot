@@ -73,4 +73,12 @@ class TestRobotLibrary < MiniTest::Unit::TestCase
     @robot.place 0, 0, :east
     assert_equal [1, 0], @robot.next_position
   end
+
+  def test_cant_move_where_object_exists
+    @robot.place 1, 1, :east
+    assert_equal '1,1,EAST', @robot.report
+    @robot.place_object
+    @robot.move
+    assert_equal '1,1,EAST', @robot.report
+  end
 end
