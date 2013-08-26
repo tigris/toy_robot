@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require 'toy_robot'
+require 'robot'
 
-class TestToyRobotLibrary < MiniTest::Unit::TestCase
+class TestRobotLibrary < MiniTest::Unit::TestCase
   def setup
-    @robot = ToyRobot.new
+    @robot = Robot.new
   end
 
   def test_move_before_placement_ignored

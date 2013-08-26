@@ -1,10 +1,10 @@
 require 'minitest/autorun'
 
-class TestToyRobotExecutable < MiniTest::Unit::TestCase
+class TestRobotExecutable < MiniTest::Unit::TestCase
   def setup
     root        = File.expand_path(File.join(File.dirname(__FILE__), '..'))
     @sample_dir = File.join(root, 'test', 'samples')
-    @executable = File.join(root, 'bin', 'toy_robot')
+    @executable = File.join(root, 'bin', 'robot')
   end
 
   def test_sample_a

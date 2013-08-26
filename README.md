@@ -1,9 +1,9 @@
-# Toy Robot Simulator
+# Robot Simulator
 
 ## Usage
 
 ```ruby
-  t = ToyRobot.new
+  t = Robot.new
   t.place 0, 0, :east
   t.move
   puts t.report # 1,0,EAST

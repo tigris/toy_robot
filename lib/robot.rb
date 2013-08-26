@@ -1,4 +1,4 @@
-class ToyRobot
+class Robot
   # Directions can simply be an array where turning left/right is the same as
   # going down/up the array index.
   DIRECTIONS = %w(north east south west).freeze

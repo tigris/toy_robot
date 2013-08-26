@@ -5,7 +5,7 @@ file   = File.readlink(file) while File.symlink?(file) # Avoid putting same end 
 libdir = File.expand_path(File.join(File.dirname(file), '..', 'lib'))
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
-require 'toy_robot'
+require 'robot'
 
 def parse_command robot, command
   command = command.chomp
@@ -27,5 +27,5 @@ def parse_command robot, command
   puts val if args == :report
 end
 
-robot = ToyRobot.new
+robot = Robot.new
 File.readlines(ARGV[0]).each{|line| parse_command(robot, line) }
